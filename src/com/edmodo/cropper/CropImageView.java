@@ -238,7 +238,11 @@ public class CropImageView extends FrameLayout {
     public void setImageBitmap(Bitmap bitmap) {
 
         mBitmap = bitmap;
-        mImageView.setImageBitmap(mBitmap);
+        try{
+            mImageView.setImageBitmap(mBitmap);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         requestLayout();
 
         if (mCropOverlayView != null) {
@@ -262,7 +266,11 @@ public class CropImageView extends FrameLayout {
         }
 
         if (exif == null) {
-            setImageBitmap(bitmap);
+            try{
+                setImageBitmap(bitmap);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
             return;
         }
 
@@ -283,7 +291,11 @@ public class CropImageView extends FrameLayout {
         }
 
         if (rotate == -1) {
-            setImageBitmap(bitmap);
+            try{
+                setImageBitmap(bitmap);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         } else {
             matrix.postRotate(rotate);
             final Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap,
@@ -293,7 +305,11 @@ public class CropImageView extends FrameLayout {
                                                              bitmap.getHeight(),
                                                              matrix,
                                                              true);
-            setImageBitmap(rotatedBitmap);
+            try{
+                setImageBitmap(rotatedBitmap);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
             bitmap.recycle();
         }
     }
@@ -306,7 +322,11 @@ public class CropImageView extends FrameLayout {
     public void setImageResource(int resId) {
         if (resId != 0) {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resId);
-            setImageBitmap(bitmap);
+            try{
+                setImageBitmap(bitmap);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -449,7 +469,11 @@ public class CropImageView extends FrameLayout {
         Matrix matrix = new Matrix();
         matrix.postRotate(degrees);
         mBitmap = Bitmap.createBitmap(mBitmap, 0, 0, mBitmap.getWidth(), mBitmap.getHeight(), matrix, true);
-        setImageBitmap(mBitmap);
+        try{
+            setImageBitmap(mBitmap);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         mDegreesRotated += degrees;
         mDegreesRotated = mDegreesRotated % 360;
